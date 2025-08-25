@@ -44,15 +44,15 @@ class CustomerPage{
         console.log('Account number verified successfully')
     }
     async deposit_functionality(amount,curr){
+
         //await this.page.waitForLoadState('networkidle');
         //await this.depositicon.scrollIntoViewIfNeeded();
         //await expect (this.depositicon).toBeVisible({ timeout: 20000 });
         try {
             await expect(this.depositicon).toBeVisible({ timeout: 20000 });
             } catch (error) {
-        // Take screenshot and throw error if icon not visible
-            await this.page.screenshot({ path: 'screenshots/deposit-icon-not-visible.png', fullPage: true });
-            throw new Error('❌ Deposit icon did not become visible on the page.');
+            //await this.page.screenshot({ path: 'screenshots/deposit-icon-not-visible.png', fullPage: true });
+            throw new Error('Deposit icon did not become visible on the page.');
             }
         await this.depositicon.click();
         await this.page.waitForSelector('//button[text()="Deposit"]');
