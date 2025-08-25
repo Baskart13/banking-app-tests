@@ -42,15 +42,15 @@ class CustomerPage{
             await dropdownLocator.waitFor({ state: 'visible', timeout: 15000 });
         } catch {
             console.warn('#accountSelect did not appear within timeout. Skipping verification.');
-            return;  // Skip test or handle accordingly
+            return;
         }
-        await this.page.waitForSelector('#accountSelect', { state: 'visible' ,timeout: 10000});
         const dropdown= await this.dropdowntext.textContent();
         const displayed= await this.accountnumbertext.textContent();
         await expect(this.displayed).toEqual(this.dropdown);
         console.log('Account number verified successfully')
     }
     async deposit_functionality(amount,curr){
+        await this.page.waitForSelector('//button[@ng-click="deposit()"]');
         await this.depositicon.click();
         await this.page.waitForSelector('//button[text()="Deposit"]');
         await this.amountinput.fill(amount)
