@@ -16,11 +16,9 @@ export default defineConfig({
         },
         {
             name:'e2e',
-            use: {
-                storageState: './storageState.json'
-            },
+            testMatch: /.*customer.*\.spec\.js/,
             dependencies:['setup']
         },
     ],
-    reporter: [['junit', { outputFile: 'test-results/results.xml' }]],
+    
 })
