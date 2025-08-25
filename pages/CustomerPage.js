@@ -48,8 +48,8 @@ class CustomerPage{
         //await this.page.waitForLoadState('networkidle');
         //await this.depositicon.scrollIntoViewIfNeeded();
         //await expect (this.depositicon).toBeVisible({ timeout: 20000 });
-        await this.page.waitForSelector('//button[contains(text(),"Deposit")]', { state: 'visible', timeout: 20000 });
-        await this.depositicon.scrollIntoViewIfNeeded();
+        await this.page.waitForLoadState('networkidle');
+        await this.page.waitForTimeout(500); 
         await expect(this.depositicon).toBeVisible({ timeout: 20000 });
         await this.depositicon.click();
         await this.page.waitForSelector('//button[text()="Deposit"]');
