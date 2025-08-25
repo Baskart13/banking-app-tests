@@ -48,12 +48,7 @@ class CustomerPage{
         //await this.page.waitForLoadState('networkidle');
         //await this.depositicon.scrollIntoViewIfNeeded();
         //await expect (this.depositicon).toBeVisible({ timeout: 20000 });
-        try {
-            await expect(this.depositicon).toBeVisible({ timeout: 20000 });
-            } catch (error) {
-            //await this.page.screenshot({ path: 'screenshots/deposit-icon-not-visible.png', fullPage: true });
-            throw new Error('Deposit icon did not become visible on the page.');
-            }
+        await expect(this.depositicon).toHaveCount(1, { timeout: 10000 });
         await this.depositicon.click();
         await this.page.waitForSelector('//button[text()="Deposit"]');
         await this.amountinput.fill(amount)
