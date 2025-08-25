@@ -38,7 +38,14 @@ class CustomerPage{
         console.log('Customer logged in Successfully')
     }
     async accountnumberverification(){
-        await this.page.waitForLoadState('networkidle');
+            await this.page.waitForLoadState('networkidle');
+
+        // TEMP: Debug what's happening on the page
+        const isVisible = await this.page.locator('#accountSelect').isVisible();
+        console.log('Is #accountSelect visible?', isVisible);
+
+        // Screenshot for debugging
+        await this.page.screenshot({ path: 'debug-account-select.png', fullPage: true });
         await this.page.waitForSelector('#accountSelect', { state: 'visible' ,timeout: 10000});
         const dropdown= await this.dropdowntext.textContent();
         const displayed= await this.accountnumbertext.textContent();
