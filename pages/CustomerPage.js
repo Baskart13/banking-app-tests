@@ -48,9 +48,16 @@ class CustomerPage{
         //await this.page.waitForLoadState('networkidle');
         //await this.depositicon.scrollIntoViewIfNeeded();
         //await expect (this.depositicon).toBeVisible({ timeout: 20000 });
-        await this.page.waitForLoadState('networkidle');
-        await this.page.waitForTimeout(500); 
+        for (let attempt = 0; attempt < 2; attempt++) {
+
+            if (await this.depositicon.isVisible()) break;
+            await this.page.reload();
+            await this.page.waitForLoadState('networkidle');
+            }
         await expect(this.depositicon).toBeVisible({ timeout: 20000 });
+        //await this.page.waitForLoadState('networkidle');
+        //await this.page.waitForTimeout(500); 
+        //await expect(this.depositicon).toBeVisible({ timeout: 20000 });
         await this.depositicon.click();
         await this.page.waitForSelector('//button[text()="Deposit"]');
         await this.amountinput.fill(amount)
