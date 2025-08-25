@@ -21,7 +21,7 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Debug Environment
         run: |
@@ -38,10 +38,8 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      - name: Run E2E Tests
-        run: |
-          mkdir -p test-results
-          npm run test:e2e -- tests/customer/e2e_customer_flow.spec.js 
+      - name: Run Playwright tests
+        run: npx playwright test
 
       - name: Upload Test Results
         if: always()
