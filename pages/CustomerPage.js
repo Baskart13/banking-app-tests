@@ -37,10 +37,10 @@ class CustomerPage{
         console.log('Customer logged in Successfully')
     }
     async accountnumberverification(){
-        const dropdown= await this.dropdowntext.textContent();
-        const displayed= await this.accountnumbertext.textContent();
-        await expect(dropdown).toEqual(displayed.trim());
-        console.log('Account number verified successfully')
+        const selectedOption = await this.dropdowntext.locator('option[selected]').innerText();
+        const displayed = await this.accountnumbertext.textContent();
+        await expect(selectedOption.trim()).toEqual(displayed.trim());
+        console.log('Account number verified successfully');
     }
     async deposit_functionality(amount,curr){
         await this.page.waitForLoadState('networkidle');
