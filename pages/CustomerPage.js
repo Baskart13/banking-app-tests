@@ -38,7 +38,7 @@ class CustomerPage{
         console.log('Customer logged in Successfully')
     }
     async accountnumberverification(){
-        await this.page.waitForSelector("#accountSelect")
+        await this.page.waitForSelector('#accountSelect', { state: 'visible' ,timeout: 10000});
         const dropdown= await this.dropdowntext.textContent();
         const displayed= await this.accountnumbertext.textContent();
         await expect(this.displayed).toEqual(this.dropdown);
