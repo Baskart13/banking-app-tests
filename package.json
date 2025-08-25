@@ -6,7 +6,7 @@
   "scripts": {
 
     "test": "playwright test",
-    "test:e2e": "playwright test --reporter=junit=test-results/results.xml"
+    "test:e2e": "playwright test"
   },
   "keywords": [],
   "author": "",
