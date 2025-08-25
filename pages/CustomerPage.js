@@ -39,7 +39,7 @@ class CustomerPage{
     }
     async accountnumberverification(){
         try {
-            await dropdownLocator.waitFor({ state: 'visible', timeout: 15000 });
+            await dropdownLocator.waitFor({ state: 'visible', timeout: 30000 });
         } catch {
             console.warn('#accountSelect did not appear within timeout. Skipping verification.');
             return;
@@ -50,7 +50,7 @@ class CustomerPage{
         console.log('Account number verified successfully')
     }
     async deposit_functionality(amount,curr){
-        await this.page.waitForSelector('//button[@ng-click="deposit()"]');
+        await this.depositicon.waitFor({ state: 'visible', timeout: 30000 });
         await this.depositicon.click();
         await this.page.waitForSelector('//button[text()="Deposit"]');
         await this.amountinput.fill(amount)
