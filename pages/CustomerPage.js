@@ -38,6 +38,7 @@ class CustomerPage{
         console.log('Customer logged in Successfully')
     }
     async accountnumberverification(){
+        await this.page.waitForLoadState('networkidle');
         await this.page.waitForSelector('#accountSelect', { state: 'visible' ,timeout: 10000});
         const dropdown= await this.dropdowntext.textContent();
         const displayed= await this.accountnumbertext.textContent();
