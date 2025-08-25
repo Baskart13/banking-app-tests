@@ -24,7 +24,6 @@ class CustomerPage{
         this.btnback=page.locator("//button[@ng-click='back()']")
         this.withdrawicon=page.locator("//button[@ng-click='withdrawl()']")
         this.btnwithdraw=page.locator('//button[@type="submit"]')
-        this.btnlogout=page.locator('//button[@ng-show="logout"]')
     }
     async goto() {
     await this.page.goto('https://www.globalsqa.com/angularJs-protractor/BankingProject/#/login');
@@ -40,24 +39,12 @@ class CustomerPage{
     async accountnumberverification(){
         const dropdown= await this.dropdowntext.textContent();
         const displayed= await this.accountnumbertext.textContent();
-        await expect(this.displayed).toEqual(this.dropdown);
+        await expect(dropdown).toEqual(displayed.trim());
         console.log('Account number verified successfully')
     }
     async deposit_functionality(amount,curr){
-
-        //await this.page.waitForLoadState('networkidle');
-        //await this.depositicon.scrollIntoViewIfNeeded();
-        //await expect (this.depositicon).toBeVisible({ timeout: 20000 });
-        for (let attempt = 0; attempt < 2; attempt++) {
-
-            if (await this.depositicon.isVisible()) break;
-            await this.page.reload();
-            await this.page.waitForLoadState('networkidle');
-            }
+        await this.page.waitForLoadState('networkidle');
         await expect(this.depositicon).toBeVisible({ timeout: 20000 });
-        //await this.page.waitForLoadState('networkidle');
-        //await this.page.waitForTimeout(500); 
-        //await expect(this.depositicon).toBeVisible({ timeout: 20000 });
         await this.depositicon.click();
         await this.page.waitForSelector('//button[text()="Deposit"]');
         await this.amountinput.fill(amount)
@@ -72,8 +59,7 @@ class CustomerPage{
         console.log('Currency verified successfully')   
     }
     async deposit_verification(amount){
-        await this.transactionicon.click()
-        await this.page.waitForTimeout(500);
+        await this.transactionicon.click();
         await this.page.waitForSelector('//button[@ng-show="showDate"]')
         await this.page.reload();
         const shortDate=new Date();

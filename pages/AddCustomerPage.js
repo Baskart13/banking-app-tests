@@ -33,9 +33,6 @@ class AddCustomerPage{
     async searchcustomer(username){
         await this.searchfield.fill(username)
         await expect (this.searchresult).toHaveText(username)
-    }
-
-    
-        
+    }      
 }
-module.exports ={AddCustomerPage}
+module.exports ={AddCustomerPage};
