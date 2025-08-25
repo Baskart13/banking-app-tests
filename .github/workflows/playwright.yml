@@ -23,13 +23,22 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Debug Environment
+        run: |
+          echo "NODE VERSION:"
+          node -v
+          echo "NPM VERSION:"
+          npm -v
+          echo "Installed node_modules/.bin:"
+          ls -l node_modules/.bin
+
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
       - name: Run E2E Tests
         run: |
           mkdir -p test-results
-          npx playwright test:e2e -- tests/customer/e2e_customer_flow.spec.js
+          npm run test:e2e -- tests/customer/e2e_customer_flow.spec.js
 
       - name: Upload Test Results
         if: always()
