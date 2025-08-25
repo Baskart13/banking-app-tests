@@ -44,6 +44,7 @@ class CustomerPage{
         console.log('Account number verified successfully')
     }
     async deposit_functionality(amount,curr){
+        await expect (this.depositicon).toBeVisible({ timeout: 20000 });
         await this.depositicon.click();
         await this.page.waitForSelector('//button[text()="Deposit"]');
         await this.amountinput.fill(amount)
