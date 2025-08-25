@@ -44,11 +44,16 @@ class CustomerPage{
         console.log('Account number verified successfully')
     }
     async deposit_functionality(amount,curr){
-        await this.page.waitForLoadState('networkidle');
-        await this.depositicon.scrollIntoViewIfNeeded();
-        await expect (this.depositicon).toBeVisible({ timeout: 20000 });
+        //await this.page.waitForLoadState('networkidle');
+        //await this.depositicon.scrollIntoViewIfNeeded();
+        //await expect (this.depositicon).toBeVisible({ timeout: 20000 });
+        //await this.depositicon.click();
+        if (await this.depositicon.isVisible()) {
         await this.depositicon.click();
-        await this.page.waitForSelector('//button[text()="Deposit"]');
+        } else {
+            throw new Error('Deposit icon is not visible after login');
+        }
+        //await this.page.waitForSelector('//button[text()="Deposit"]');
         await this.amountinput.fill(amount)
         await this.btndeposit.click();
         await expect(this.successfulmsg).toBeVisible();
