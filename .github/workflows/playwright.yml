@@ -22,9 +22,19 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+      - name: Check Playwright CLI version
+        run: npx playwright --version
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
+
+      - name: Debug environment
+        run: |
+            echo "PATH=$PATH"
+            which node
+            which npm
+            which npx
+            which playwright || echo "Playwright CLI not found"
 
       # Run setup script 
       - name: Run Setup Script
@@ -43,3 +53,4 @@ jobs:
         with:
           name: test-results
           path: test-results/
+
