@@ -45,10 +45,9 @@ class CustomerPage{
     }
     async deposit_functionality(amount,curr){
 
-        //await this.page.waitForLoadState('networkidle');
-        //await this.depositicon.scrollIntoViewIfNeeded();
-        //await expect (this.depositicon).toBeVisible({ timeout: 20000 });
-        await expect(this.depositicon).toHaveCount(1, { timeout: 10000 });
+        await this.page.waitForLoadState('networkidle');
+        await this.depositicon.scrollIntoViewIfNeeded();
+        await expect (this.depositicon).toBeVisible({ timeout: 20000 });
         await this.depositicon.click();
         await this.page.waitForSelector('//button[text()="Deposit"]');
         await this.amountinput.fill(amount)
