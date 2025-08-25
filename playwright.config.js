@@ -4,7 +4,6 @@ export default defineConfig({
 
     testDir: './tests',
     timeout: 30 * 1000,
-    globalSetup: './global-setup.js',
     use:{
         headless: true,
         screenshot:"only-on-failure",
@@ -14,9 +13,14 @@ export default defineConfig({
         storageState: './storageState.json',
     },    
     projects: [
+    {
+      name: 'setup',
+      testMatch: /.*setup\.spec\.js/,
+    },
   {
     name: 'e2e',
     testMatch: /.*customer.*\.spec\.js/,
+    dependencies:['setup'],
   },
 ],
 })
