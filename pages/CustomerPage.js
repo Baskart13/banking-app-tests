@@ -38,19 +38,12 @@ class CustomerPage{
         console.log('Customer logged in Successfully')
     }
     async accountnumberverification(){
-        try {
-            await dropdownLocator.waitFor({ state: 'visible', timeout: 30000 });
-        } catch {
-            console.warn('#accountSelect did not appear within timeout. Skipping verification.');
-            return;
-        }
         const dropdown= await this.dropdowntext.textContent();
         const displayed= await this.accountnumbertext.textContent();
         await expect(this.displayed).toEqual(this.dropdown);
         console.log('Account number verified successfully')
     }
     async deposit_functionality(amount,curr){
-        await this.depositicon.waitFor({ state: 'visible', timeout: 30000 });
         await this.depositicon.click();
         await this.page.waitForSelector('//button[text()="Deposit"]');
         await this.amountinput.fill(amount)
