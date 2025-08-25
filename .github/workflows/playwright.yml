@@ -28,14 +28,6 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      - name: Debug environment
-        run: |
-            echo "PATH=$PATH"
-            which node
-            which npm
-            which npx
-            which playwright || echo "Playwright CLI not found"
-
       # Run setup script 
       - name: Run Setup Script
         run: npx playwright test tests/setup/setup.spec.js --reporter=list
