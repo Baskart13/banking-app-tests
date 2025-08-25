@@ -7,7 +7,9 @@ export default defineConfig({
     use:{
         headless: true,
         screenshot:"only-on-failure",
+        video: 'retain-on-failure',
         trace:"on-first-retry",
+        retries: 1
     },
     projects:[
         {
