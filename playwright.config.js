@@ -18,9 +18,23 @@ export default defineConfig({
       testMatch: /.*setup\.spec\.js/,
     },
   {
-    name: 'e2e',
+    name: 'chromium',
     testMatch: /.*customer.*\.spec\.js/,
-    dependencies:['setup'],
+    dependencies: ['setup'],
+    use: { browserName: 'chromium' },
   },
+  {
+    name: 'firefox',
+    testMatch: /.*customer.*\.spec\.js/,
+    dependencies: ['setup'],
+    use: { browserName: 'firefox' },
+  },
+  {
+    name: 'webkit',
+    testMatch: /.*customer.*\.spec\.js/,
+    dependencies: ['setup'],
+    use: { browserName: 'webkit' },
+  },
+
 ],
 })

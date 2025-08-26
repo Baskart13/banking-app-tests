@@ -73,14 +73,6 @@ class CustomerPage{
         await expect (typelocator).toBeVisible();
         console.log("Transaction verified successfully");
     }
-    async reset_functionlaity(amount){
-        await this.btnreset.click()
-        await expect(this.rowlocator).not.toBeVisible();
-        await this.btnback.click();
-        const Balance= await this.Balancetext.textContent();
-        await expect(Balance).not.toEqual(amount);
-        console.log('Verified Reset functionality');
-    }
     async withdrawl_functionality(amount){
         await this.btnback.click();
         await this.withdrawicon.click();

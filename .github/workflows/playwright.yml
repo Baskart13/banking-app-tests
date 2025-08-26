@@ -10,6 +10,9 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        browser: [chromium, firefox, webkit]
 
     steps:
       - name: Checkout code
@@ -38,8 +41,8 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      - name: Run Playwright tests
-        run: npx playwright test
+      - name: Run tests on ${{ matrix.browser }}
+        run: npx playwright test --project=${{ matrix.browser }} --reporter=html
 
       - name: Upload Test Results
         if: always()
