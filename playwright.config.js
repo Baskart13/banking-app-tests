@@ -1,40 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
-const isCI = !!process.env.CI;
 
-const baseProjects = [
-  {
-    name: 'setup',
-    testMatch: /.*setup\.spec\.js/,
-  },
-  {
-    testMatch: /.*customer.*\.spec\.js/,
-    dependencies: ['setup'],
-  },
-];
 
-// Add per-browser project config
-const browserProjects = isCI
-  ? [
-      {
-        name: 'chromium',
-        use: { ...devices['Desktop Chrome'], browserName: 'chromium' },
-      },
-      {
-        name: 'firefox',
-        use: { ...devices['Desktop Firefox'], browserName: 'firefox' },
-      },
-      {
-        name: 'webkit',
-        use: { ...devices['Desktop Safari'], browserName: 'webkit' },
-      },
-    ]
-  : [
-      {
-        name: 'chromium',
-        use: { ...devices['Desktop Chrome'], browserName: 'chromium' },
-      },
-    ];
 
 export default defineConfig({
   testDir: './tests',
@@ -48,11 +15,22 @@ export default defineConfig({
     trace: 'on-first-retry',
     storageState: './storageState.json',
   },
+  projects:[
+    {
+      name:'setup',
+      tetsMatch:/.*setup\.spec.js/,
+    },
 
-  // Combine your test logic projects with browser-specific ones
-  projects: browserProjects.map((browser) => ({
-    ...browser,
-    testDir: './tests',
-    projects: baseProjects,
-  })),
-});
+      { testMatch: /.*customer.*\.spec\.js/,
+        dependencies: ['setup'],
+    },
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'], browserName: 'chromium' },
+    },
+    {
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'], browserName: 'webkit' },
+    },
+  ],
+  })

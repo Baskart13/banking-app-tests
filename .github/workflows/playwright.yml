@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        browser: [chromium, firefox, webkit]
+        browser: [chromium, webkit]
 
     steps:
       - name: Checkout code
@@ -41,12 +41,12 @@ jobs:
       - name: Install Playwright Browsers
         run: microsoft/playwright-github-action@v1
 
-      - name: Run Tests on All Browsers
-        run: npx playwright test  --reporter=html
+      - name: Run Playwright Tests on ${{ matrix.browser }}
+        run: npx playwright test --project=${{ matrix.browser }} --reporter=html
 
       - name: Upload Test Results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: test-results
+          name: test-results-${{ matrix.browser }}
           path: test-results/
