@@ -19,19 +19,21 @@ export default defineConfig({
   projects:[
     {
       name:'setup',
-      tetsMatch:/.*setup\.spec.js/,
+      testMatch:/.*setup\.spec.js/,
+      use: { ...devices['Desktop Chrome'] }
     },
 
-      { testMatch: /.*customer.*\.spec\.js/,
-        dependencies: ['setup'],
-    },
     {
       name: 'chromium',
+      testMatch: /.*customer.*\.spec\.js$/, 
       use: { ...devices['Desktop Chrome'] },
+      dependencies: ['setup'],
     },
     {
       name: 'webkit',
+      testMatch: /.*customer.*\.spec\.js$/, 
       use: { ...devices['Desktop Safari'] },
+      dependencies: ['setup'],
     },
   ],
   })
