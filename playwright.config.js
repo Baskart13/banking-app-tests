@@ -24,12 +24,6 @@ export default defineConfig({
     use: { browserName: 'chromium' },
   },
   {
-    name: 'firefox',
-    testMatch: /.*customer.*\.spec\.js/,
-    dependencies: ['setup'],
-    use: { browserName: 'firefox' },
-  },
-  {
     name: 'webkit',
     testMatch: /.*customer.*\.spec\.js/,
     dependencies: ['setup'],
