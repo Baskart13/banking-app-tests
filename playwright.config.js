@@ -5,8 +5,9 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests',
+  workers: 1,
   timeout: 30 * 1000,
-  retries: 1,
+  retries: 0,
 
   use: {
     headless: true,
@@ -26,11 +27,11 @@ export default defineConfig({
     },
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'], browserName: 'chromium' },
+      use: { ...devices['Desktop Chrome'] },
     },
     {
       name: 'webkit',
-      use: { ...devices['Desktop Safari'], browserName: 'webkit' },
+      use: { ...devices['Desktop Safari'] },
     },
   ],
   })
