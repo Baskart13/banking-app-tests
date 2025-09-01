@@ -68,6 +68,7 @@ class CustomerPage{
         const options={year:'numeric',month:'short',day:'numeric'};
         const formatteddate=shortDate.toLocaleDateString('en-US',options)
         const datelocator=this.page.locator(`//td[contains(text(),"${formatteddate}")]`);
+        await datelocator.waitFor({ state: 'visible', timeout: 10000 });
         await expect (datelocator).toBeVisible();
         const amountlocator=this.page.locator(`//td[contains(text(),"${amount}")]`)
         const typelocator=this.page.locator('//td[contains(text(),"Credit")]')
