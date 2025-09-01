@@ -65,7 +65,6 @@ class CustomerPage{
         const shortDate=new Date();
         const options={year:'numeric',month:'short',day:'numeric'};
         const formatteddate=shortDate.toLocaleDateString('en-US',options)
-        await this.page.waitForSelector(`//td[contains(text(),"${formatteddate}")]`, { timeout: 10000 });
         const datelocator=this.page.locator(`//td[contains(text(),"${formatteddate}")]`);
         await expect (datelocator).toBeVisible();
         const amountlocator=this.page.locator(`//td[contains(text(),"${amount}")]`)
