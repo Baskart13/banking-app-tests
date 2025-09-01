@@ -61,12 +61,14 @@ class CustomerPage{
     async deposit_verification(amount){
         await this.transactionicon.click();
         await this.page.waitForSelector('//button[@ng-show="showDate"]')
+        await this.btnback.click();
+        await this.transactionicon.click();
         await this.page.reload();
-        //const shortDate=new Date();
-        //const options={year:'numeric',month:'short',day:'numeric'};
-        //const formatteddate=shortDate.toLocaleDateString('en-US',options)
-        //const datelocator=this.page.locator(`//td[contains(text(),"${formatteddate}")]`);
-        //await expect (datelocator).toBeVisible();
+        const shortDate=new Date();
+        const options={year:'numeric',month:'short',day:'numeric'};
+        const formatteddate=shortDate.toLocaleDateString('en-US',options)
+        const datelocator=this.page.locator(`//td[contains(text(),"${formatteddate}")]`);
+        await expect (datelocator).toBeVisible();
         const amountlocator=this.page.locator(`//td[contains(text(),"${amount}")]`)
         const typelocator=this.page.locator('//td[contains(text(),"Credit")]')
         await expect (amountlocator).toBeVisible();
