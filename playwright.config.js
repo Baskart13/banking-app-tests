@@ -34,6 +34,6 @@ export default defineConfig({
       testMatch: /.*customer.*\.spec\.js$/, 
       use: { ...devices['Desktop Safari'] },
       dependencies: ['setup'],
-    },
+    }
   ],
   })
